@@ -1,0 +1,42 @@
+version: '3.7'
+
+volumes:
+    logs:
+        driver: local
+
+services:
+    slim:
+        container_name: php
+        build:
+            context: .
+            dockerfile: ./Dockerfile
+        working_dir: /var/www/html
+        command: php -S 0.0.0.0:8080 -t public
+        environment:
+            docker: "true"
+        ports:
+            - 8080:8080
+        volumes:
+            - .:/var/www/html
+            - logs:/var/www/html/logs
+        networks:
+            - symfony
+        depends_on: 
+            - mysql
+    mysql:
+        container_name: mysql
+        image: mysql
+        command: --default-authentication-plugin=mysql_native_password
+        volumes:
+            - ./db_data:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: secret
+            MYSQL_DATABASE: symfony
+            MYSQL_USER: symfony
+            MYSQL_PASSWORD: secret
+        networks:
+            - symfony
+        ports:
+            - 3306:3306    
+networks:
+    symfony:
