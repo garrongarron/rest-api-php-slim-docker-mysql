@@ -10,12 +10,6 @@ use Slim\App;
 use Slim\Interfaces\RouteCollectorProxyInterface as Group;
 use App\Samu\Routes;
 
-function out($result, $response)
-{
-    $response->getBody()->write($result);
-    return $response->withHeader('Content-Type', 'application/json');
-}
-
 return function (App $app) {
     
     $app->get('/', function (Request $request, Response $response) {

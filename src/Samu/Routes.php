@@ -15,7 +15,7 @@ class Routes
 {
     static public function proccess(App $app)
     {
-        $app->group('/a', function (Group $group) {
+        $app->group('/product', function (Group $group) {
             $group->get('', function (Request $request, Response $response) {
                 $product = ProductSingleton::getInstance();
                 $out = $product->get();
