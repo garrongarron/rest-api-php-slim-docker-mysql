@@ -7,19 +7,68 @@ cargar una base de datos.
 Y hemos generado un Modulo que implementa la conexion y manejo de la DB Mysql.
 
 
-## nota ##
+## Paso 1 ##
 
-Luego de ejecutar 
+Ejecutar el siguiente comando para descargar el frmework
 ```
-composer create-project slim/slim-skeleton .
+sudo docker run --rm --interactive --tty  --volume $PWD:/app  composer:1.1  create-project slim/slim-skeleton project1
+```
+Utilizamos composer 1.1 por que la version 2 es incompatibe.
+
+
+## Paso 2 ##
+Luego cargar las dependencias de otras librerias.
+```
+sudo docker run --rm --interactive --tty  --volume $PWD:/app  composer:1.1 install
 ```
 
-se debe ejecutar 
+## Paso 3 ##
+
+Ejecutar el siguiente comando para descargar este projecto en una carpeta temporal.
+
 ```
-composer install
+git clone https://github.com/garrongarron/rest-api-php-slim-docker-mysql.git project2-tmp
 ```
 
-Para cargar las dependencias (otras librerias)
+## Paso 4 ##
+Ahora copiamos la carpeta oculta .git y la insertamos en el projecto que contiene el framework.
+```
+mv project2-tmp/.git project1/.git
+```
+
+## Paso 5 ##
+Ahora eliminamos el proyecto temporal
+```
+rm -rf project2-tmp
+```
+
+## Paso 6 ##
+Vamos al projecto principal
+```
+cd project1
+```
+
+y cargamos la ultima version (el ultimo commit)
+
+```
+git checkout main --force
+```
+
+## Paso 7 ##
+
+Para iniciar el projecto ejecutar lo siguiente
+
+```
+sudo docker-compose up
+```
+
+## Paso 8 ##
+ya puedes ir al browser a 
+
+```
+http://0.0.0.0:8080/
+```
+
 
 Esperamos que este mini projecto les saque de algun apuro. Gracias
 
