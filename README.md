@@ -11,7 +11,7 @@ Y hemos generado un Modulo que implementa la conexion y manejo de la DB Mysql.
 
 Ejecutar el siguiente comando para descargar el frmework
 ```
-sudo docker run --rm --interactive --tty  --volume $PWD:/app  composer:1.1  create-project slim/slim-skeleton project1
+sudo docker run --rm --interactive --tty  --volume $PWD:/app  composer:1.1  create-project slim/slim-skeleton:4.1 project1
 ```
 Utilizamos composer 1.1 por que la version 2 es incompatibe.
 
