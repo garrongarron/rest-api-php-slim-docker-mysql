@@ -71,26 +71,3 @@ class Product
         return json_encode($line);
     }
 }
-
-
-
-/*-- create
-create table products (
-    id INT(6) AUTO_INCREMENT PRIMARY KEY,
-    description VARCHAR(30) NOT NULL
-);
--- insert
-insert into products (description)
-values ('test1');
---select
-Select *
-from products
-where description like '%e%';
---update
-update products
-set description = 'Esto es una descripcion'
-where id = 1;
---delete
-delete from products
-where id = 1;
-*/
