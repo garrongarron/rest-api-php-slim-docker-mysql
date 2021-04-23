@@ -2,21 +2,26 @@
 
 namespace App\Samu;
 
-class Product extends Model implements ModelInterface
+
+use App\Samu\Model;
+
+class Chapter extends Model implements ModelInterface
 {
-    private $table = 'products';
+    private $table = 'chapters';
+   
     public function __construct($db)
     {
         $this->db = $db;
         $db->query("CREATE TABLE IF NOT EXISTS $this->table (
             id INT(6) AUTO_INCREMENT PRIMARY KEY,
-            description VARCHAR(300) NOT NULL
+            description VARCHAR(300) NOT NULL,
+            json MEDIUMTEXT NULL
         )");
     }
 
     public function get($id = null)
     {
-        $query = "Select * from $this->table";
+        $query = "Select id, description from $this->table";
         if ($id) {
             $query = "Select * from $this->table where id = '$id';";
         }
