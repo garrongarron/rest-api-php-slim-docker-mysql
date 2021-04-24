@@ -1,27 +1,26 @@
 <?php
 
-namespace App\Samu;
-
+namespace App\Samu\Modules;
 
 use App\Samu\Model;
+use App\Samu\ModelInterface;
 
-class Chapter extends Model implements ModelInterface
+
+class Product extends Model implements ModelInterface
 {
-    private $table = 'chapters';
-   
+    private $table = 'products';
     public function __construct($db)
     {
         $this->db = $db;
         $db->query("CREATE TABLE IF NOT EXISTS $this->table (
             id INT(6) AUTO_INCREMENT PRIMARY KEY,
-            description VARCHAR(300) NOT NULL,
-            json MEDIUMTEXT NULL
+            description VARCHAR(300) NOT NULL
         )");
     }
 
     public function get($id = null)
     {
-        $query = "Select id, description from $this->table";
+        $query = "Select * from $this->table";
         if ($id) {
             $query = "Select * from $this->table where id = '$id';";
         }
@@ -62,6 +61,4 @@ class Chapter extends Model implements ModelInterface
         }
         return $this->toJson();
     }
-
-
 }
